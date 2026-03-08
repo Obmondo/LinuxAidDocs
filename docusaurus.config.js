@@ -80,6 +80,23 @@ const config = {
         ],
     ],
 
+    plugins: [
+        function (context, options) {
+            return {
+                name: 'custom-webpack-plugin',
+                configureWebpack(config, isServer, utils) {
+                    return {
+                        ignoreWarnings: [
+                            {
+                                message: /Critical dependency: require function is used in a way in which dependencies cannot be statically extracted/,
+                            },
+                        ],
+                    };
+                },
+            };
+        },
+    ],
+
     presets: [
         [
             'classic',
